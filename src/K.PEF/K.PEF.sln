@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K.PEF.Logger", "K.PEF.Logge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K.PEF.Common", "K.PEF.Common\K.PEF.Common.csproj", "{87532B93-B5E8-4792-A234-8D771AB1A981}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{EE21AB91-470B-4E61-ADD5-8A4621496AB1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{AF939BC3-F9E2-40DA-975A-853B5790F419}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +34,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{956F05AC-24FD-4779-9C24-6CA9F9D1C774} = {EE21AB91-470B-4E61-ADD5-8A4621496AB1}
+		{87532B93-B5E8-4792-A234-8D771AB1A981} = {EE21AB91-470B-4E61-ADD5-8A4621496AB1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CD33454B-16B5-4608-8C22-B49041BE620A}
