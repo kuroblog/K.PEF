@@ -1,0 +1,26 @@
+﻿<Window x:Class="K.PEF.Shell.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:K.PEF.Shell"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:cp="clr-namespace:K.PEF.Common.Parameters;assembly=K.PEF.Common"
+        mc:Ignorable="d"
+        d:DesignWidth="800" d:DesignHeight="450"
+        Title="{Binding Title}">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Border>
+        <ContentControl prism:RegionManager.RegionName="{x:Static cp:RegionNames.Main}"
+                        VerticalContentAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"/>
+    </Border>
+
+</Window>

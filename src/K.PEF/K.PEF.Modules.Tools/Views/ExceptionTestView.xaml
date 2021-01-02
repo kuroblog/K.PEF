@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="K.PEF.Modules.Tools.Views.ExceptionTestView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:K.PEF.Modules.Tools.Views"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:cp="clr-namespace:K.PEF.Common.Parameters;assembly=K.PEF.Common"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="MinWidth" Value="90"/>
+        </Style>
+    </UserControl.Resources>
+
+    <WrapPanel Background="Red" Orientation="Horizontal">
+        <Button Content="ex 1" Command="{Binding Ex1Command}"/>
+        <Button Content="ex 2" Command="{Binding Ex2Command}"/>
+        <Button Content="ex 3" Command="{Binding Ex3Command}"/>
+        <Button Content="ex 4" Command="{Binding Ex4Command}"/>
+        <Button Content="ex 5" Command="{Binding Ex5Command}"/>
+    </WrapPanel>
+</UserControl>
