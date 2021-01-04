@@ -1,4 +1,5 @@
-﻿using K.PEF.Common.Extensions;
+﻿using K.PEF.Common;
+using K.PEF.Common.Extensions;
 using K.PEF.Logger;
 using K.PEF.Logger.Infrastructures;
 using Prism.Ioc;
@@ -77,6 +78,16 @@ namespace K.PEF.Shell
             if (e.IsTerminating)
             {
                 logger.Fatal(e.ExceptionObject);
+
+                var fatalFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"ERROR.{DateTime.Now.AsFullTimeFormatString()}.{Guid.NewGuid().AsFormatN()}.log");
+                File.WriteAllText(fatalFile, e.ExceptionObject.AsJsonFormatString());
+
+                MessageBox.Show(e.ExceptionObject.AsJsonFormatString(), "System Error");
+
+                //MainDispatcher.Instance.Invoke(() => MessageBox.Show(
+                //    $"系统发生异常:{Environment.NewLine}  {e.ExceptionObject.ToString()}{Environment.NewLine}  {e.ExceptionObject.AsJsonFormatString()}",
+                //    "系统错误",
+                //    MessageBoxButton.OK));
             }
             else
             {

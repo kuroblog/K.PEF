@@ -31,5 +31,13 @@
         <Button Content="ex 3" Command="{Binding Ex3Command}"/>
         <Button Content="ex 4" Command="{Binding Ex4Command}"/>
         <Button Content="ex 5" Command="{Binding Ex5Command}"/>
+
+        <CheckBox IsChecked="{Binding IsEnabled}" Content="Can Execute Command" Margin="10" VerticalAlignment="Center"/>
+        <Button Command="{Binding ExecuteDelegateCommand}" Content="DelegateCommand" Margin="10" VerticalAlignment="Center"/>
+        <Button Command="{Binding DelegateCommandObservesProperty}" Content="DelegateCommand ObservesProperty" Margin="10" VerticalAlignment="Center"/>
+        <Button Command="{Binding DelegateCommandObservesCanExecute}" Content="DelegateCommand ObservesCanExecute" Margin="10" VerticalAlignment="Center"/>
+        <Button Command="{Binding ExecuteGenericDelegateCommand}" CommandParameter="Passed Parameter" Content="DelegateCommand Generic" Margin="10" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding UpdateText}" Margin="10" FontSize="22" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding IsEnabled}" Margin="10" FontSize="22" VerticalAlignment="Center"/>
     </WrapPanel>
 </UserControl>
