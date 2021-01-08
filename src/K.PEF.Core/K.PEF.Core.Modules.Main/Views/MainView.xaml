@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:K.PEF.Core.Modules.Main.Views"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:cs="clr-namespace:K.PEF.Core.Common.Settings;assembly=K.PEF.Core.Common"
              mc:Ignorable="d" 
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -13,8 +14,9 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/TextBlockStyles.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/FontStyles.xaml"/>
+                <!-- 用于测试从不同的外部程序集引用样式 -->
+                <!--<ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/TextBlockStyles.xaml"/>-->
+                <!--<ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/FontStyles.xaml"/>-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -25,7 +27,8 @@
         </behaviors:EventTrigger>
     </behaviors:Interaction.Triggers>
 
-    <DockPanel>
+    <!-- 测试样式 -->
+    <!--<DockPanel>
         <TextBlock Text="K.PEF.Core.Modules.Main" FontSize="36" Style="{StaticResource RedTextBlockStyle}"
                    DockPanel.Dock="Top"/>
         <TextBlock Text="测试不同的字体 >> Hello World!" FontSize="36" Style="{StaticResource T1TextBlockStyle}"
@@ -35,5 +38,12 @@
         <TextBlock Text="这是一个测试字符串ASCVdxdfggh！@￥￥%￥DDFF~" DockPanel.Dock="Top" FontFamily="{StaticResource MingLiuFont}"/>
         <TextBlock Text="这是一个测试字符串ASCVdxdfggh！@￥￥%￥DDFF~" DockPanel.Dock="Top" FontFamily="{StaticResource MsYHFont}"/>
         <Grid></Grid>
-    </DockPanel>
+    </DockPanel>-->
+
+    <Border>
+        <ContentControl VerticalContentAlignment="Stretch" 
+                        HorizontalContentAlignment="Stretch" 
+                        prism:RegionManager.RegionName="{x:Static cs:PrismRegionNames.ContentRegion}"/>
+    </Border>
+
 </UserControl>
