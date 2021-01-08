@@ -21,27 +21,7 @@ namespace K.PEF.Core.Shell
          *      protected abstract void RegisterTypes(Prism.Ioc.IContainerRegistry containerRegistry);
          * }
          * **************************************************************************************************/
-        protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-            containerRegistry.RegisterServices(serviceCollection =>
-            {
-                var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-                var configure = new ConfigurationBuilder()
-                    //.SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                    // or
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    // set appsettings from
-                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                    // when asp.net core
-                    .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
-                    .Build();
-
-                serviceCollection
-                    .AddSingleton<IConfiguration>(configure)
-                    .Configure<StartupSetting>(configure.GetSection(nameof(StartupSetting)));
-            });
-        }
+        protected override void RegisterTypes(IContainerRegistry containerRegistry) => RegisterTypesByContainerWithServiceCollection(containerRegistry);
 
         /****************************************************************************************************
          * Prism.PrismApplicationBase
@@ -49,22 +29,7 @@ namespace K.PEF.Core.Shell
          *      protected abstract System.Windows.Window CreateShell()
          * }
          * **************************************************************************************************/
-        protected override Window CreateShell()
-        {
-            var startupSetting = Container.Resolve<IOptions<StartupSetting>>()?.Value;
-            if (startupSetting == null)
-            {
-                throw new ArgumentException("null", nameof(startupSetting));
-            }
-
-            var shell = Container.Resolve<Views.ShellWindow>();
-            shell.Width = startupSetting.ScreenWidth;
-            shell.Height = startupSetting.ScreenHeight;
-            shell.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
-
-            return shell;
-        }
+        protected override Window CreateShell() => CreateShellWindow();
 
         protected override IModuleCatalog CreateModuleCatalog()
         {
@@ -88,6 +53,44 @@ namespace K.PEF.Core.Shell
         protected override void OnExit(ExitEventArgs e)
         {
             base.OnExit(e);
+        }
+
+        private Window CreateShellWindow()
+        {
+            var startupSetting = Container.Resolve<IOptions<StartupSetting>>()?.Value;
+            if (startupSetting == null)
+            {
+                throw new ArgumentException("null", nameof(startupSetting));
+            }
+
+            var shell = Container.Resolve<Views.ShellWindow>();
+            shell.Width = startupSetting.ScreenWidth;
+            shell.Height = startupSetting.ScreenHeight;
+            shell.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            return shell;
+        }
+
+        private void RegisterTypesByContainerWithServiceCollection(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterServices(serviceCollection =>
+            {
+                var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+                var configure = new ConfigurationBuilder()
+                    //.SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                    // or
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    // set appsettings from
+                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                    // when asp.net core
+                    .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
+                    .Build();
+
+                serviceCollection
+                    .AddSingleton<IConfiguration>(configure)
+                    .Configure<StartupSetting>(configure.GetSection(nameof(StartupSetting)));
+            });
         }
     }
 }
