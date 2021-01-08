@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Infrastructures\" />
     <Folder Include="Settings\" />
     <Folder Include="Assets\Images\" />
     <Folder Include="Assets\Styles\" />
@@ -18,7 +19,6 @@
     <Folder Include="Controls\" />
     <Folder Include="Converters\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Infrastructures\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Models\" />
     <Folder Include="Services\" />

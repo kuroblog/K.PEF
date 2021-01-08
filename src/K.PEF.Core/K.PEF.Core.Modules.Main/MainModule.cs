@@ -8,9 +8,7 @@ namespace K.PEF.Core.Modules.Main
 {
     public class MainModule : IModule
     {
-        public MainModule()
-        {
-        }
+        public MainModule() { }
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
@@ -19,8 +17,6 @@ namespace K.PEF.Core.Modules.Main
             regionManager.RegisterViewWithRegion(PrismRegionNames.MainRegion, typeof(MainView));
         }
 
-        public void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-        }
+        public void RegisterTypes(IContainerRegistry containerRegistry) { }
     }
 }

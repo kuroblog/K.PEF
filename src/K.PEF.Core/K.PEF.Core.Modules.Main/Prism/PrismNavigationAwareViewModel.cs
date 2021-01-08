@@ -1,10 +1,10 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using Prism.Regions;
+using System;
 
-namespace K.PEF.Core.Shell.ViewModels
+namespace K.PEF.Core.Modules.PrismExtensions
 {
-    public partial class ShellWindowViewModel : BindableBase, INavigationAware
+    public abstract class PrismNavigationAwareViewModel : BindableBase, INavigationAware
     {
         /****************************************************************************************************
          * Prism.Regions.INavigationAware
@@ -12,7 +12,7 @@ namespace K.PEF.Core.Shell.ViewModels
          *      bool IsNavigationTarget(Prism.Regions.NavigationContext navigationContext);
          * }
          * **************************************************************************************************/
-        public bool IsNavigationTarget(NavigationContext navigationContext) => true;
+        public virtual bool IsNavigationTarget(NavigationContext navigationContext) => true;
 
         /****************************************************************************************************
          * Prism.Regions.INavigationAware
@@ -20,7 +20,7 @@ namespace K.PEF.Core.Shell.ViewModels
          *      void OnNavigatedFrom(Prism.Regions.NavigationContext navigationContext);
          * }
          * **************************************************************************************************/
-        public void OnNavigatedFrom(NavigationContext navigationContext) { }
+        public virtual void OnNavigatedFrom(NavigationContext navigationContext) { }
 
         /****************************************************************************************************
          * Prism.Regions.INavigationAware
@@ -28,10 +28,18 @@ namespace K.PEF.Core.Shell.ViewModels
          *      void OnNavigatedTo(Prism.Regions.NavigationContext navigationContext);
          * }
          * **************************************************************************************************/
-        public void OnNavigatedTo(NavigationContext navigationContext) { }
+        public virtual void OnNavigatedTo(NavigationContext navigationContext) { }
 
-        public ShellWindowViewModel() { }
+        protected readonly IRegionManager _regionManager = null;
 
-        public DelegateCommand<object> LoadedCommand => new DelegateCommand<object>(args => { });
+        public PrismNavigationAwareViewModel(IRegionManager regionManager)
+        {
+            if (regionManager == null)
+            {
+                throw new ArgumentNullException(nameof(regionManager));
+            }
+
+            _regionManager = regionManager;
+        }
     }
 }

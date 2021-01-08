@@ -9,24 +9,11 @@
         <ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/FontStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="{x:Type TextBlock}" x:Key="DefaultTextBlockStyle">
+    <Style TargetType="{x:Type TextBox}" x:Key="DefaultTextBoxStyle">
         <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
         <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}"/>
         <Setter Property="Padding" Value="5,1"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-    </Style>
-
-    <Style TargetType="{x:Type TextBlock}" x:Key="RedTextBlockStyle" BasedOn="{StaticResource DefaultTextBlockStyle}">
-        <!--<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>-->
-        <Setter Property="Foreground" Value="Red"/>
-    </Style>
-
-    <Style TargetType="{x:Type TextBlock}" x:Key="T1TextBlockStyle" BasedOn="{StaticResource DefaultTextBlockStyle}">
-        <Setter Property="FontFamily" Value="{StaticResource FangSongFont}"/>
-    </Style>
-
-    <Style TargetType="{x:Type TextBlock}" x:Key="T2TextBlockStyle" BasedOn="{StaticResource DefaultTextBlockStyle}">
-        <Setter Property="FontFamily" Value="{StaticResource MingLiuFont}"/>
     </Style>
 
 </ResourceDictionary>
