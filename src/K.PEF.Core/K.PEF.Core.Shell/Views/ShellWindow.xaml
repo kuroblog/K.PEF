@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:K.PEF.Core.Shell.Views"
         xmlns:prism="http://prismlibrary.com/"
         xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:cs="clr-namespace:K.PEF.Core.Common.Settings;assembly=K.PEF.Core.Common"
         mc:Ignorable="d"
         Title="ShellWindow" Height="450" Width="800">
 
@@ -15,7 +16,10 @@
         </behaviors:EventTrigger>
     </behaviors:Interaction.Triggers>
 
-    <Grid>
+    <Border>
+        <ContentControl VerticalContentAlignment="Stretch" 
+                        HorizontalContentAlignment="Stretch" 
+                        prism:RegionManager.RegionName="{x:Static cs:PrismRegionNames.MainRegion}"/>
+    </Border>
 
-    </Grid>
 </Window>
