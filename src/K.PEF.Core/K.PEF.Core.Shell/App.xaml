@@ -1,4 +1,5 @@
-﻿<Application x:Class="K.PEF.Core.Shell.App"
+﻿<!-- 基于 System.Windows.Application 的默认 App.xaml -->
+<!--<Application x:Class="K.PEF.Core.Shell.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:K.PEF.Core.Shell"
@@ -6,4 +7,14 @@
     <Application.Resources>
          
     </Application.Resources>
-</Application>
+</Application>-->
+<!-- 使用 Prism.Unity.PrismApplication 来替换原来的 App.xaml -->
+<prism:PrismApplication x:Class="K.PEF.Core.Shell.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:K.PEF.Core.Shell"
+             xmlns:prism="http://prismlibrary.com/">
+
+    <Application.Resources/>
+
+</prism:PrismApplication>
