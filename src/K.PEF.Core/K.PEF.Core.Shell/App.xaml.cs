@@ -1,4 +1,5 @@
 ﻿using Prism.Ioc;
+using Prism.Modularity;
 using Prism.Unity;
 using System.Windows;
 
@@ -30,6 +31,18 @@ namespace K.PEF.Core.Shell
             shell.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             return shell;
+        }
+
+        protected override IModuleCatalog CreateModuleCatalog()
+        {
+            //base.CreateModuleCatalog();
+            // 设置要加载的 Modules 目录
+            // 当前目录
+            //var modulePath = @".\";
+            // 指定目录
+            var modulePath = @".\Modules";
+
+            return new DirectoryModuleCatalog { ModulePath = modulePath };
         }
     }
 }
