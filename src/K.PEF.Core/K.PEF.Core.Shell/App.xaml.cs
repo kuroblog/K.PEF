@@ -26,7 +26,7 @@ namespace K.PEF.Core.Shell
          * **************************************************************************************************/
         protected override Window CreateShell()
         {
-            var shell = Container.Resolve<MainWindow>();
+            var shell = Container.Resolve<Views.ShellWindow>();
             shell.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             return shell;
