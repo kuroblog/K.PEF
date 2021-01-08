@@ -17,7 +17,6 @@
     <Folder Include="Controls\" />
     <Folder Include="Infrastructures\" />
     <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Converters\" />
     <Folder Include="Extensions\" />
     <Folder Include="Behaviors\" />
