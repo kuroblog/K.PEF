@@ -1,6 +1,12 @@
-﻿using Prism.Ioc;
+﻿using K.PEF.Core.Common.Settings;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
+using System;
+using System.IO;
 using System.Windows;
 
 namespace K.PEF.Core.Shell
@@ -17,6 +23,24 @@ namespace K.PEF.Core.Shell
          * **************************************************************************************************/
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterServices(serviceCollection =>
+            {
+                var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+                var configure = new ConfigurationBuilder()
+                    //.SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                    // or
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    // set appsettings from
+                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                    // when asp.net core
+                    .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
+                    .Build();
+
+                serviceCollection
+                    .AddSingleton<IConfiguration>(configure)
+                    .Configure<StartupSetting>(configure.GetSection(nameof(StartupSetting)));
+            });
         }
 
         /****************************************************************************************************
@@ -27,8 +51,17 @@ namespace K.PEF.Core.Shell
          * **************************************************************************************************/
         protected override Window CreateShell()
         {
+            var startupSetting = Container.Resolve<IOptions<StartupSetting>>()?.Value;
+            if (startupSetting == null)
+            {
+                throw new ArgumentException("null", nameof(startupSetting));
+            }
+
             var shell = Container.Resolve<Views.ShellWindow>();
+            shell.Width = startupSetting.ScreenWidth;
+            shell.Height = startupSetting.ScreenHeight;
             shell.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
 
             return shell;
         }

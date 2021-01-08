@@ -8,7 +8,12 @@
         xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:cs="clr-namespace:K.PEF.Core.Common.Settings;assembly=K.PEF.Core.Common"
         mc:Ignorable="d"
-        Title="ShellWindow" Height="450" Width="800">
+        Title="{Binding Title}"
+        Width="{Binding Width, Mode=TwoWay}"
+        Height="{Binding Height, Mode=TwoWay}"
+        d:Width="640"
+        d:Height="480"
+        d:Title="Shell">
 
     <behaviors:Interaction.Triggers>
         <behaviors:EventTrigger EventName="Loaded">
