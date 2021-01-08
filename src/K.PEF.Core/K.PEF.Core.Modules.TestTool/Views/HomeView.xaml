@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:K.PEF.Core.Modules.TestTool.Views"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:settings="clr-namespace:K.PEF.Core.Modules.TestTool.Settings"
              mc:Ignorable="d" 
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignHeight="450" d:DesignWidth="800" d:Background="White">
@@ -13,9 +14,9 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/FontStyles.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/TextBlockStyles.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/TextBoxStyles.xaml"/>
+                <!--<ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/FontStyles.xaml"/>-->
+                <!--<ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/TextBlockStyles.xaml"/>-->
+                <!--<ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/TextBoxStyles.xaml"/>-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -27,42 +28,23 @@
     </behaviors:Interaction.Triggers>
 
     <DockPanel>
-        <!--<Menu ItemsSource="{Binding Menus}" DockPanel.Dock="Top" MinHeight="10">
-            <Menu.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding SubMenus}">
-                    <TextBlock Text="{Binding Header}"/>
-                </HierarchicalDataTemplate>
-            </Menu.ItemTemplate>
-            <Menu.ItemContainerStyle>
-                <Style TargetType="{x:Type MenuItem}">
-                    <Setter Property="Command" Value="{Binding DoCommand}"/>
-                    -->
-        <!--<Setter Property="CommandParameter" Value="{Binding Path=Header, RelativeSource={RelativeSource Mode=Self}}"/>-->
-        <!--
-                    <Setter Property="CommandParameter" Value="{Binding Key}"/>
-                </Style>
-            </Menu.ItemContainerStyle>
-        </Menu>-->
+        <Border DockPanel.Dock="Top">
+            <ContentControl VerticalContentAlignment="Stretch" 
+                            HorizontalContentAlignment="Stretch" 
+                            prism:RegionManager.RegionName="{x:Static settings:RegionNames.HeadRegion}"/>
+        </Border>
 
-        <DockPanel MinHeight="10" DockPanel.Dock="Bottom">
+        <Border DockPanel.Dock="Bottom">
+            <ContentControl VerticalContentAlignment="Stretch" 
+                            HorizontalContentAlignment="Stretch" 
+                            prism:RegionManager.RegionName="{x:Static settings:RegionNames.FootRegion}"/>
+        </Border>
 
-            <DockPanel.Resources>
-                <Style TargetType="{x:Type TextBlock}" x:Key="BottomTextBlockStyle" BasedOn="{StaticResource DefaultTextBlockStyle}">
-                    <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"/>
-                </Style>
-            </DockPanel.Resources>
-
-            <TextBlock Style="{StaticResource BottomTextBlockStyle}" Text="Logs:" DockPanel.Dock="Left"/>
-
-            <TextBlock Style="{StaticResource BottomTextBlockStyle}" DockPanel.Dock="Right">
-                <Run Text="VER:"/>
-                <Run Text="1.0.0.1"/>
-            </TextBlock>
-
-            <TextBox Style="{StaticResource DefaultTextBoxStyle}" BorderThickness="0" IsReadOnly="True"/>
-        </DockPanel>
-
-        <Border></Border>
+        <Border>
+            <ContentControl VerticalContentAlignment="Stretch" 
+                            HorizontalContentAlignment="Stretch" 
+                            prism:RegionManager.RegionName="{x:Static settings:RegionNames.BodyRegion}"/>
+        </Border>
 
     </DockPanel>
 

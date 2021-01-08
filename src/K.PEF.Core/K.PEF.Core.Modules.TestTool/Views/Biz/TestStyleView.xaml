@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="K.PEF.Core.Modules.TestTool.Views.TestLogView"
+﻿<UserControl x:Class="K.PEF.Core.Modules.TestTool.Views.TestStyleView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,7 +8,19 @@
              xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              prism:ViewModelLocator.AutoWireViewModel="True"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" 
+             d:DesignWidth="800"
+             d:Background="White">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--<ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/FontStyles.xaml"/>-->
+                <ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/TextBlockStyles.xaml"/>
+                <!--<ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/TextBoxStyles.xaml"/>-->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
 
     <behaviors:Interaction.Triggers>
         <behaviors:EventTrigger EventName="Loaded">
@@ -17,6 +29,6 @@
     </behaviors:Interaction.Triggers>
 
     <Grid>
-
+        <TextBlock Style="{StaticResource RedTextBlockStyle}" Text="This is test style view."/>
     </Grid>
 </UserControl>

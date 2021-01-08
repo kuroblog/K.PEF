@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="K.PEF.Core.Modules.TestTool.Views.FootView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:K.PEF.Core.Modules.TestTool.Views"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d" 
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             d:DesignWidth="360" 
+             d:Background="White">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/FontStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/TextBlockStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/TextBoxStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <behaviors:Interaction.Triggers>
+        <behaviors:EventTrigger EventName="Loaded">
+            <behaviors:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </behaviors:EventTrigger>
+    </behaviors:Interaction.Triggers>
+
+    <DockPanel MinHeight="10" DockPanel.Dock="Bottom">
+
+        <DockPanel.Resources>
+            <Style TargetType="{x:Type TextBlock}" x:Key="BottomTextBlockStyle" BasedOn="{StaticResource DefaultTextBlockStyle}">
+                <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"/>
+            </Style>
+        </DockPanel.Resources>
+
+        <TextBlock Style="{StaticResource BottomTextBlockStyle}" Text="Logs:" DockPanel.Dock="Left"/>
+
+        <TextBlock Style="{StaticResource BottomTextBlockStyle}" DockPanel.Dock="Right">
+                <Run Text="VER:"/>
+                <Run Text="1.0.0.1"/>
+        </TextBlock>
+
+        <TextBox Style="{StaticResource DefaultTextBoxStyle}" BorderThickness="0" IsReadOnly="True"/>
+    </DockPanel>
+</UserControl>

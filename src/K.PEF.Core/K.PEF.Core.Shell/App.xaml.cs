@@ -44,5 +44,17 @@ namespace K.PEF.Core.Shell
 
             return new DirectoryModuleCatalog { ModulePath = modulePath };
         }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            ShutdownMode = ShutdownMode.OnMainWindowClose;
+
+            base.OnStartup(e);
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+        }
     }
 }

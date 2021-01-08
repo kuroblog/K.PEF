@@ -28,7 +28,9 @@ namespace K.PEF.Core.Modules.Main
                 typeof(TestControlView),
                 typeof(TestLogView),
                 typeof(TestStyleView),
-                typeof(TestDataView)
+                typeof(TestDataView),
+                typeof(FootView),
+                typeof(MenuView)
             }.ForEach(type => containerRegistry.RegisterForNavigation(type, type.FullName));
         }
     }

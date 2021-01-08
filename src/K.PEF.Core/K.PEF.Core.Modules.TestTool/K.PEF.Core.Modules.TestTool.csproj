@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Settings\" />
     <Folder Include="Assets\Images\" />
     <Folder Include="Assets\Styles\" />
     <Folder Include="Behaviors\" />
@@ -24,7 +23,6 @@
     <Folder Include="Extensions\" />
     <Folder Include="Infrastructures\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="Models\" />
     <Folder Include="Services\" />
     <Folder Include="Prism\" />
   </ItemGroup>
