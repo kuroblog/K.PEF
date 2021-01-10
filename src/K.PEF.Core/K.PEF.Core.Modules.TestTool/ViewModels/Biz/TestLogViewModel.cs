@@ -9,5 +9,7 @@ namespace K.PEF.Core.Modules.TestTool.ViewModels
         public TestLogViewModel(IRegionManager regionManager) : base(regionManager) { }
 
         public DelegateCommand<object> LoadedCommand => new DelegateCommand<object>(args => { });
+
+        public DelegateCommand CreateNewLogCommand => new DelegateCommand(() => { });
     }
 }

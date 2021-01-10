@@ -9,7 +9,10 @@ namespace K.PEF.Core.Modules.TestTool.ViewModels
     {
         public LoginViewModel(IRegionManager regionManager) : base(regionManager) { }
 
-        public DelegateCommand<object> LoadedCommand => new DelegateCommand<object>(args => { });
+        public DelegateCommand<object> LoadedCommand => new DelegateCommand<object>(args =>
+        {
+            MockUserLoginCommand.Execute();
+        });
 
         public DelegateCommand MockUserLoginCommand => new DelegateCommand(() =>
         {

@@ -17,7 +17,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <!--<ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/FontStyles.xaml"/>-->
                 <ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/TextBlockStyles.xaml"/>
-                <!--<ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/TextBoxStyles.xaml"/>-->
+                <ResourceDictionary Source="pack://application:,,,/K.PEF.Core.Assets;component/Styles/ButtonStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -28,7 +28,13 @@
         </behaviors:EventTrigger>
     </behaviors:Interaction.Triggers>
 
-    <Grid>
-        <TextBlock Style="{StaticResource RedTextBlockStyle}" Text="This is test log view."/>
-    </Grid>
+    <DockPanel>
+        <Border DockPanel.Dock="Top" BorderThickness="1" BorderBrush="Gray" Margin="1" Padding="1">
+            <WrapPanel Orientation="Horizontal">
+                <Button Style="{StaticResource DefaultButtonStyle}" Content="Create A New Log" Command="{Binding CreateNewLogCommand}"/>
+            </WrapPanel>
+        </Border>
+
+        <TextBlock Style="{StaticResource RedTextBlockStyle}" Text="This is test log view." FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </DockPanel>
 </UserControl>

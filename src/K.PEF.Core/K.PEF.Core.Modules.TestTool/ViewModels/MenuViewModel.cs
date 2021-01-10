@@ -4,6 +4,7 @@ using K.PEF.Core.Modules.TestTool.Settings;
 using Prism.Commands;
 using Prism.Regions;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace K.PEF.Core.Modules.TestTool.ViewModels
 {
@@ -39,7 +40,10 @@ namespace K.PEF.Core.Modules.TestTool.ViewModels
             Menus.Add(helpMenu);
         }
 
-        public DelegateCommand<object> LoadedCommand => new DelegateCommand<object>(args => { });
+        public DelegateCommand<object> LoadedCommand => new DelegateCommand<object>(args =>
+        {
+            _regionManager.RequestNavigate(RegionNames.BodyRegion, typeof(Views.TestLogView).FullName, callback => { });
+        });
 
         private ObservableCollection<MenuModel> _menus = new ObservableCollection<MenuModel>();
 
