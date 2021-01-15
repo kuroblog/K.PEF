@@ -1,4 +1,4 @@
-﻿using K.PEF.Core.Common.Infrastructures;
+﻿using K.PEF.Core.Common.Interfaces;
 using K.PEF.Core.Common.Settings;
 using Microsoft.Extensions.Options;
 using Prism.Commands;

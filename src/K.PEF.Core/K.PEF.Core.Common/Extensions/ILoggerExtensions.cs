@@ -1,54 +1,10 @@
-﻿using System;
+﻿using K.PEF.Core.Common.Interfaces;
+using K.PEF.Core.Common.Models;
+using K.PEF.Core.Common.Models.Types;
+using System;
 
-namespace K.PEF.Core.Common.Infrastructures
+namespace K.PEF.Core.Common.Extensions
 {
-    public enum LogType
-    {
-        Debug,
-        Information,
-        Warning,
-        Error,
-        Fatal
-    }
-
-    public class LogEntry
-    {
-        public LogType LogType { get; private set; }
-
-        public string MessageOrTemplate { get; private set; }
-
-        public Exception Exception { get; private set; }
-
-        public object[] TemplateArgs { get; private set; }
-
-        public LogEntry(LogType logType, string messageOrTemplate, Exception exception = null, params object[] templateArgs)
-        {
-            if (messageOrTemplate == null)
-            {
-                throw new ArgumentNullException(nameof(messageOrTemplate));
-            }
-
-            if (messageOrTemplate == string.Empty)
-            {
-                throw new ArgumentException("empty", nameof(messageOrTemplate));
-            }
-
-            LogType = logType;
-            MessageOrTemplate = messageOrTemplate;
-            Exception = exception;
-            TemplateArgs = templateArgs;
-        }
-    }
-
-    public interface ILogger
-    {
-        void Log(LogEntry entry);
-
-        void PushProperty(string name, object value, bool destructureObjects = false);
-    }
-
-    public interface ILogger<T> : ILogger where T : class { }
-
     public static class ILoggerExtensions
     {
         public static void Debug(this ILogger logger, string messageOrTemplate, params object[] templateArgs) =>

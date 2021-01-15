@@ -1,5 +1,7 @@
-﻿using Serilog;
-using ci = K.PEF.Core.Common.Infrastructures;
+﻿using K.PEF.Core.Common.Models;
+using K.PEF.Core.Common.Models.Types;
+using Serilog;
+using ci = K.PEF.Core.Common.Interfaces;
 
 namespace K.PEF.Core.Shell.Infrastructures
 {
@@ -9,23 +11,23 @@ namespace K.PEF.Core.Shell.Infrastructures
 
         public LogWrapper(ILogger adapter) => _adapter = adapter;
 
-        public void Log(ci.LogEntry entry)
+        public void Log(LogEntry entry)
         {
             switch (entry.LogType)
             {
-                case ci.LogType.Debug:
+                case LogType.Debug:
                     _adapter.Debug(entry.Exception, entry.MessageOrTemplate, entry.TemplateArgs);
                     break;
-                case ci.LogType.Information:
+                case LogType.Information:
                     _adapter.Information(entry.Exception, entry.MessageOrTemplate, entry.TemplateArgs);
                     break;
-                case ci.LogType.Warning:
+                case LogType.Warning:
                     _adapter.Warning(entry.Exception, entry.MessageOrTemplate, entry.TemplateArgs);
                     break;
-                case ci.LogType.Error:
+                case LogType.Error:
                     _adapter.Error(entry.Exception, entry.MessageOrTemplate, entry.TemplateArgs);
                     break;
-                case ci.LogType.Fatal:
+                case LogType.Fatal:
                     _adapter.Fatal(entry.Exception, entry.MessageOrTemplate, entry.TemplateArgs);
                     break;
                 default:
