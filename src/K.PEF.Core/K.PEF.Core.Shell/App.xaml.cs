@@ -1,13 +1,17 @@
 ﻿using K.PEF.Core.Common.Settings;
+using K.PEF.Core.Shell.Infrastructures;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
+using Serilog;
 using System;
 using System.IO;
 using System.Windows;
+using ci = K.PEF.Core.Common.Infrastructures;
 
 namespace K.PEF.Core.Shell
 {
@@ -52,6 +56,8 @@ namespace K.PEF.Core.Shell
 
         protected override void OnExit(ExitEventArgs e)
         {
+            Log.CloseAndFlush();
+
             base.OnExit(e);
         }
 
@@ -71,8 +77,7 @@ namespace K.PEF.Core.Shell
             return shell;
         }
 
-        private void RegisterTypesByContainerWithServiceCollection(IContainerRegistry containerRegistry)
-        {
+        private void RegisterTypesByContainerWithServiceCollection(IContainerRegistry containerRegistry) =>
             containerRegistry.RegisterServices(serviceCollection =>
             {
                 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
@@ -87,10 +92,29 @@ namespace K.PEF.Core.Shell
                     .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
                     .Build();
 
+                if (Log.Logger == null || Log.Logger.GetType().Name == "SilentLogger")
+                {
+                    Log.Logger = new LoggerConfiguration()
+                        .ReadFrom.Configuration(configure)
+                        .CreateLogger();
+                }
+
                 serviceCollection
                     .AddSingleton<IConfiguration>(configure)
                     .Configure<StartupSetting>(configure.GetSection(nameof(StartupSetting)));
+
+                serviceCollection.AddLogging(builder =>
+                {
+                    builder
+                        .ClearProviders()
+                        //.AddConsole()
+                        .AddSerilog(Log.Logger, dispose: true);
+                });
+
+                serviceCollection
+                    .AddSingleton(Log.Logger)
+                    .AddSingleton<ci.ILogger, LogWrapper>()
+                    .AddSingleton(typeof(ci.ILogger<>), typeof(LogWrapper<>));
             });
-        }
     }
 }

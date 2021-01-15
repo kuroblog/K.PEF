@@ -1,8 +1,10 @@
-﻿using K.PEF.Core.Common.Settings;
+﻿using K.PEF.Core.Common.Infrastructures;
+using K.PEF.Core.Common.Settings;
 using Microsoft.Extensions.Options;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
+using System.Diagnostics;
 
 namespace K.PEF.Core.Shell.ViewModels
 {
@@ -28,7 +30,9 @@ namespace K.PEF.Core.Shell.ViewModels
             set => SetProperty(ref _height, value);
         }
 
-        public ShellWindowViewModel(IOptions<StartupSetting> startupSettingOptions)
+        private readonly ILogger<ShellWindowViewModel> _logger;
+
+        public ShellWindowViewModel(IOptions<StartupSetting> startupSettingOptions, ILogger<ShellWindowViewModel> logger)
         {
             if (startupSettingOptions == null)
             {
@@ -43,6 +47,11 @@ namespace K.PEF.Core.Shell.ViewModels
             _startupSetting = startupSettingOptions.Value;
             _width = _startupSetting.ScreenWidth;
             _height = _startupSetting.ScreenHeight;
+
+            Trace.WriteLine("12333333");
+
+            _logger = logger;
+            _logger.Information("this is a {test_message}", "hello world.");
         }
 
         public DelegateCommand<object> LoadedCommand => new DelegateCommand<object>(args => { });
