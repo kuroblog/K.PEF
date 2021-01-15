@@ -1,5 +1,4 @@
-﻿using K.PEF.Core.Common.Extensions;
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.ObjectModel;
@@ -36,8 +35,18 @@ namespace K.PEF.Core.Modules.TestTool.Models
 
         public MenuModel(string key, string name, Action<string> menuActionHandler = null)
         {
-            key.ThrowExceptionWhenArgIsNullOrEmpty();
-            name.ThrowExceptionWhenArgIsNullOrEmpty();
+            //key.ThrowExceptionWhenArgIsNullOrEmpty();
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+
+            //name.ThrowExceptionWhenArgIsNullOrEmpty();
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+
             //menuActionHandler.ThrowExceptionWhenArgIsNullOrEmpty();
 
             Key = key;

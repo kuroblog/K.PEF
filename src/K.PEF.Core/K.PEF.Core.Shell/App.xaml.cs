@@ -1,5 +1,6 @@
 ﻿using K.PEF.Core.Common.Settings;
 using K.PEF.Core.Shell.Infrastructures;
+using K.PEF.Core.Shell.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -9,6 +10,7 @@ using Prism.Modularity;
 using Prism.Unity;
 using Serilog;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using ci = K.PEF.Core.Common.Infrastructures;
@@ -96,8 +98,20 @@ namespace K.PEF.Core.Shell
                 {
                     Log.Logger = new LoggerConfiguration()
                         .ReadFrom.Configuration(configure)
+                        .Enrich.With(new TestArgEnrich())
+                        .Enrich.WithProperty("DebuggerAttached", Debugger.IsAttached)
                         .CreateLogger();
                 }
+
+                // serilog sample 1
+                //Log.Logger.Information("{Test} is a test.", "12333");
+
+                // serilog sample 2
+                //using var t = Serilog.Context.LogContext.PushProperty("ScopeKey", 999);
+                //Log.Logger.Information("111");
+                //Log.Logger.Information("222");
+                //Log.Logger.Information("333");
+                //t.Dispose();
 
                 serviceCollection
                     .AddSingleton<IConfiguration>(configure)
@@ -107,7 +121,6 @@ namespace K.PEF.Core.Shell
                 {
                     builder
                         .ClearProviders()
-                        //.AddConsole()
                         .AddSerilog(Log.Logger, dispose: true);
                 });
 

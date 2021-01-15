@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Settings\" />
     <Folder Include="Assets\Styles\" />
     <Folder Include="Assets\Images\" />
     <Folder Include="Controls\" />

@@ -4,7 +4,6 @@ using Microsoft.Extensions.Options;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
-using System.Diagnostics;
 
 namespace K.PEF.Core.Shell.ViewModels
 {
@@ -48,10 +47,10 @@ namespace K.PEF.Core.Shell.ViewModels
             _width = _startupSetting.ScreenWidth;
             _height = _startupSetting.ScreenHeight;
 
-            Trace.WriteLine("12333333");
+            //Trace.WriteLine("12333333");
 
             _logger = logger;
-            _logger.Information("this is a {test_message}", "hello world.");
+            //_logger.Information("this is a {test_message}", "hello world.");
         }
 
         public DelegateCommand<object> LoadedCommand => new DelegateCommand<object>(args => { });
